@@ -20,6 +20,21 @@ public class Bank {
         accounts.put(2000, new PremiumAccount(new AccountData(
                 2000, "Example 2", "example2@gmail.com", 200
         )));
+
+        accounts.put(9999, new PremiumAccount(new AccountData(
+                9999, "Goku", "itsover9000@gmail.com", 9001
+        )));
+
+        accounts.put(500, new BasicAccount(new AccountData(
+                500, "Mark Hanna", "wallstreetwolf@Matt.com", 7
+        )));
+
+        accounts.put(10101, new PremiumAccount(new AccountData(
+                10101, "Neo", "TheOne@One.com", 99999999)));
+
+        accounts.put(7000, new BasicAccount(new AccountData(7000, "Garfield", "Imsorryjon@theend.com", 600)));
+
+
     }
 
     public ActionResult<AccountData> getAccountById(int id) {
@@ -32,14 +47,14 @@ public class Bank {
         }
     }
 
-    public ActionResult<AccountData> deposit(AccountData accountData, int amount) {
+    public ActionResult<AccountData> deposit(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         account.deposit(amount);
 
         return ActionResult.success(account.getAccountData());
     }
 
-    public ActionResult<AccountData> withdraw(AccountData accountData, int amount) {
+    public ActionResult<AccountData> withdraw(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         boolean ok = account.withdraw(amount);
 
