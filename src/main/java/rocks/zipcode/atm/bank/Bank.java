@@ -31,6 +31,10 @@ public class Bank {
 
         accounts.put(10101, new PremiumAccount(new AccountData(
                 10101, "Neo", "TheOne@One.com", 99999999)));
+
+        accounts.put(7000, new BasicAccount(new AccountData(7000, "Garfield", "Imsorryjon@theend.com", 600)));
+
+
     }
 
     public ActionResult<AccountData> getAccountById(int id) {
