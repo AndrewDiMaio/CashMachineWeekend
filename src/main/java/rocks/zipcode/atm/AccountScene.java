@@ -34,6 +34,8 @@ public class AccountScene {
     Stage newStage = new Stage();
     Text acctBalance;
     Label accountBalance = new Label("Account Balance:");
+    Text cusEmail;
+    Label emailAddress = new Label("Email Address:");
 
 
     public AccountScene(int id){
@@ -44,8 +46,7 @@ public class AccountScene {
         this.thisScene = (new Scene(grid, 500, 400));
 
         scenetitle = new Text("Account Info");
-        grid.add(scenetitle, 0, 0, 2, 1);
-
+        grid.add(scenetitle, 0, 0, 3, 1);
 
 
         cashMachine.login(id);
@@ -54,12 +55,13 @@ public class AccountScene {
         grid.add(nameLabel, 0, 1, 1, 1);
 
 
-
         acctBalance = new Text(String.valueOf(cashMachine.getBalance()));
         grid.add(acctBalance, 1, 2, 1, 1);
         grid.add(accountBalance, 0,2, 1, 1);
 
-
+        cusEmail = new Text(cashMachine.getEmail());
+        grid.add(cusEmail, 1, 3, 1, 1);
+        grid.add(emailAddress, 0, 3, 1, 1);
 
 
 
