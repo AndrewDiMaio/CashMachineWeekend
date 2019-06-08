@@ -20,7 +20,7 @@ public class CashMachineApp extends Application {
     SceneSetter callScene = new SceneSetter();
     private TextField field = new TextField();
     private CashMachine cashMachine = new CashMachine(new Bank());
-    AccountScene accountScene = new AccountScene();
+
 
     private Parent createContent() {
         VBox vbox = new VBox(10);

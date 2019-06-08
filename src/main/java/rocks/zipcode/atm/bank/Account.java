@@ -28,6 +28,10 @@ public abstract class Account {
         }
     }
 
+    public int getAccountId(int id) {
+        return accountData.getId();
+    }
+
     protected boolean canWithdraw(float amount) {
         return getBalance() >= amount;
     }
