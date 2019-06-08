@@ -16,7 +16,11 @@ import javafx.scene.layout.FlowPane;
  */
 public class CashMachineApp extends Application {
 
+
     private TextField field = new TextField();
+
+
+
     private CashMachine cashMachine = new CashMachine(new Bank());
 
     private Parent createContent() {
