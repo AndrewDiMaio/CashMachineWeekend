@@ -16,7 +16,7 @@ import rocks.zipcode.atm.bank.Bank;
 public class SceneSetter {
     GridPane grid = new GridPane();
     private CashMachine cashMachine = new CashMachine(new Bank());
-    AccountScene loginSuccess = new AccountScene();
+    AccountScene loginSuccess;
     Scene thisScene;
     Button btnLogin = new Button("Sign In");
     TextField userTextField = new TextField();
@@ -51,8 +51,8 @@ public class SceneSetter {
        return thisScene;
     }
 
-    public Boolean buttonLogic(){
-        Boolean toContinue = false;
+    public void buttonLogic(){
+
         grid.add(actiontarget, 1, 6);
         btnLogin.setOnAction(e -> {
             int id = Integer.parseInt(userTextField.getText());
@@ -60,9 +60,10 @@ public class SceneSetter {
             if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
                 actiontarget.setText("Enter A Valid Account");
             }
-            else {toContinue = true;}
+            else {loginSuccess = new AccountScene(id);
+            }
         });
-        return toContinue;
+
     }
 
 }
