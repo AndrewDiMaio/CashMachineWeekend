@@ -1,9 +1,9 @@
 package rocks.zipcode.atm;
 
+
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -17,10 +17,8 @@ import javafx.scene.layout.FlowPane;
 public class CashMachineApp extends Application {
 
 
+    SceneSetter callScene = new SceneSetter();
     private TextField field = new TextField();
-
-
-
     private CashMachine cashMachine = new CashMachine(new Bank());
 
     private Parent createContent() {
@@ -68,11 +66,14 @@ public class CashMachineApp extends Application {
         flowpane.getChildren().add(btnExit);
         vbox.getChildren().addAll(field, flowpane, areaInfo);
         return vbox;
+
+
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setScene(new Scene(createContent()));
+        stage.setTitle("Welcome To CTM");
+        stage.setScene((callScene.setScene1()));
         stage.show();
     }
 
