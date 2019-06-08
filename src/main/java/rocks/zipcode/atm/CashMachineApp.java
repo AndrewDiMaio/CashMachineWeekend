@@ -20,6 +20,7 @@ public class CashMachineApp extends Application {
     SceneSetter callScene = new SceneSetter();
     private TextField field = new TextField();
     private CashMachine cashMachine = new CashMachine(new Bank());
+    AccountScene accountScene = new AccountScene();
 
     private Parent createContent() {
         VBox vbox = new VBox(10);
@@ -77,7 +78,10 @@ public class CashMachineApp extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Welcome To CTM");
         stage.setScene(callScene.getScene1());
-        callScene.buttonLogic();
+        if(callScene.buttonLogic()){
+            accountScene.getAccountScene();
+        }
+
         stage.show();
 
 
