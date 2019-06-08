@@ -77,12 +77,15 @@ public class AccountScene {
             float amount = Float.parseFloat(field.getText());
             cashMachine.deposit(amount);
             acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
+
         });
 
         withdrawl.setOnAction(e-> {
             float amount = Float.parseFloat(field.getText());
             cashMachine.withdraw(amount);
             acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
         });
 
         logOut.setOnAction(e-> {
