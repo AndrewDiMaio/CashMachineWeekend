@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import rocks.zipcode.atm.bank.Bank;
 
 public class SceneSetter {
@@ -23,6 +24,7 @@ public class SceneSetter {
     Text scenetitle = new Text("Welcome");
     Label accountNum = new Label("Account Number:");
     Text actiontarget = new Text();
+
 
 
     public SceneSetter(){
@@ -44,6 +46,18 @@ public class SceneSetter {
         grid.add(hbBtn, 1, 4);
 
 
+        grid.add(actiontarget, 1, 6);
+        btnLogin.setOnAction(e -> {
+            int id = Integer.parseInt(userTextField.getText());
+            cashMachine.login(id);
+            if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
+                actiontarget.setText("Enter A Valid Account");
+            }
+            else {loginSuccess = new AccountScene(id);
+                loginSuccess.getAccountScene(id);
+            }
+        });
+
     }
 
 
@@ -53,16 +67,7 @@ public class SceneSetter {
 
     public void buttonLogic(){
 
-        grid.add(actiontarget, 1, 6);
-        btnLogin.setOnAction(e -> {
-            int id = Integer.parseInt(userTextField.getText());
-            cashMachine.login(id);
-            if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
-                actiontarget.setText("Enter A Valid Account");
-            }
-            else {loginSuccess = new AccountScene(id);
-            }
-        });
+
 
     }
 

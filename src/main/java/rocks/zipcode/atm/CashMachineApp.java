@@ -78,7 +78,7 @@ public class CashMachineApp extends Application {
     public void start(Stage stage) throws Exception {
         stage.setTitle("Welcome To CTM");
         stage.setScene(callScene.getScene1());
-        callScene.buttonLogic();
+
 
 
         stage.show();
