@@ -51,8 +51,8 @@ public class SceneSetter {
        return thisScene;
     }
 
-    public Boolean buttonLogic(){
-        Boolean toContinue = false;
+    public void buttonLogic(){
+
         grid.add(actiontarget, 1, 6);
         btnLogin.setOnAction(e -> {
             int id = Integer.parseInt(userTextField.getText());
@@ -60,9 +60,9 @@ public class SceneSetter {
             if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
                 actiontarget.setText("Enter A Valid Account");
             }
-            else {toContinue = true;}
+            else {loginSuccess.getAccountScene();}
         });
-        return toContinue;
+
     }
 
 }
