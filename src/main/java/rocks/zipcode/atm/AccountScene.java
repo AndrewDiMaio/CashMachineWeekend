@@ -11,6 +11,11 @@ public class AccountScene {
     private CashMachine cashMachine = new CashMachine(new Bank());
     Scene thisScene;
 
+
+    public AccountScene(){
+
+    }
+
     public Scene getAccountScene(){
         return null;
     }
