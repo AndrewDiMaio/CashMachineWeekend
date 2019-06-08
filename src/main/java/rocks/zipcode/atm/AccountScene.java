@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,7 +25,8 @@ public class AccountScene {
     GridPane grid = new GridPane();
     private CashMachine cashMachine = new CashMachine(new Bank());
     Scene thisScene;
-    Button btnLogin = new Button("Sign In");
+    Button withdrawl = new Button("Withdrawal");
+    Button deposit = new Button("Deposit");
     TextField userTextField = new TextField();
     Text scenetitle;
     Text userName;
@@ -36,6 +38,8 @@ public class AccountScene {
     Label accountBalance = new Label("Account Balance:");
     Text cusEmail;
     Label emailAddress = new Label("Email Address:");
+
+    private TextField field = new TextField();
 
 
     public AccountScene(int id){
@@ -63,8 +67,9 @@ public class AccountScene {
         grid.add(cusEmail, 1, 3, 1, 1);
         grid.add(emailAddress, 0, 3, 1, 1);
 
-
-
+        grid.add(field, 0, 4, 3, 1);
+        grid.add(withdrawl, 3, 5, 1, 1 );
+        grid.add(deposit, 0, 5, 1, 1);
 
 
     }
