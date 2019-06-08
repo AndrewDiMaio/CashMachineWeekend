@@ -8,9 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import rocks.zipcode.atm.bank.Account;
 
+import rocks.zipcode.atm.bank.AccountData;
 import rocks.zipcode.atm.bank.Bank;
 
 import java.security.PublicKey;
@@ -21,22 +26,38 @@ public class AccountScene {
     Scene thisScene;
     Button btnLogin = new Button("Sign In");
     TextField userTextField = new TextField();
-    Text scenetitle; =
-    Label accountNum = new Label("Account Number:");
+    Text scenetitle;
+    Text userName;
+    Label nameLabel = new Label("Name:");
     Text actiontarget = new Text();
-
+    Account thisAccount;
+    Stage newStage = new Stage();
+    Text acctBalance;
+    Label accountBalance = new Label("Account Balance:");
 
 
     public AccountScene(int id){
         grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
+        grid.setHgap(20);
+        grid.setVgap(20);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        this.thisScene = (new Scene(grid, 500, 800));
+        this.thisScene = (new Scene(grid, 500, 400));
 
-        scenetitle = new Text("Account" + id);
+        scenetitle = new Text("Account Info");
         grid.add(scenetitle, 0, 0, 2, 1);
 
+
+
+        cashMachine.login(id);
+        userName = new Text(cashMachine.getName());
+        grid.add(userName, 1, 1, 1,1);
+        grid.add(nameLabel, 0, 1, 1, 1);
+
+
+
+        acctBalance = new Text(String.valueOf(cashMachine.getBalance()));
+        grid.add(acctBalance, 1, 2, 1, 1);
+        grid.add(accountBalance, 0,2, 1, 1);
 
 
 
@@ -45,8 +66,11 @@ public class AccountScene {
 
     }
 
-    public Scene getAccountScene(){
-        return thisScene;
+    public void getAccountScene(int id){
+        newStage.setTitle("Account " + id);
+        newStage.setScene(thisScene);
+        newStage.show();
+
     }
 
 

@@ -58,6 +58,15 @@ public class CashMachine {
         return accountData != null ? accountData.toString() : "Try account 1000 or 2000 and click submit.";
     }
 
+
+    public String getName(){
+        return accountData.getName();
+    }
+
+    public float getBalance(){
+        return accountData.getBalance();
+    }
+
     private <T> void tryCall(Supplier<ActionResult<T> > action, Consumer<T> postAction) {
         try {
             ActionResult<T> result = action.get();
