@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -24,18 +25,20 @@ public class AccountScene {
     GridPane grid = new GridPane();
     private CashMachine cashMachine = new CashMachine(new Bank());
     Scene thisScene;
-    Button btnLogin = new Button("Sign In");
-    TextField userTextField = new TextField();
+    Button withdrawl = new Button("Withdrawal");
+    Button deposit = new Button("Deposit");
     Text scenetitle;
     Text userName;
     Label nameLabel = new Label("Name:");
-    Text actiontarget = new Text();
-    Account thisAccount;
-    Stage newStage = new Stage();
+    Stage newStage;
     Text acctBalance;
     Label accountBalance = new Label("Account Balance:");
     Text cusEmail;
     Label emailAddress = new Label("Email Address:");
+    Button logOut = new Button("Log Out");
+
+
+    private TextField field = new TextField();
 
 
     public AccountScene(int id){
@@ -63,13 +66,38 @@ public class AccountScene {
         grid.add(cusEmail, 1, 3, 1, 1);
         grid.add(emailAddress, 0, 3, 1, 1);
 
+        grid.add(field, 0, 4, 3, 1);
+        grid.add(withdrawl, 3, 5, 1, 1 );
+        grid.add(deposit, 0, 5, 1, 1);
 
+        grid.add(logOut, 2, 6, 3,1);
+
+
+        deposit.setOnAction(e-> {
+            float amount = Float.parseFloat(field.getText());
+            cashMachine.deposit(amount);
+            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
+
+        });
+
+        withdrawl.setOnAction(e-> {
+            float amount = Float.parseFloat(field.getText());
+            cashMachine.withdraw(amount);
+            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
+        });
+
+        logOut.setOnAction(e-> {
+            newStage.close();
+        });
 
 
 
     }
 
     public void getAccountScene(int id){
+        newStage = new Stage();
         newStage.setTitle("Account " + id);
         newStage.setScene(thisScene);
         newStage.show();
