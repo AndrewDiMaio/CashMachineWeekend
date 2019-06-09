@@ -19,7 +19,10 @@ public class CashMachineApp extends Application {
 
     SceneSetter callScene = new SceneSetter();
     private TextField field = new TextField();
-    private CashMachine cashMachine = new CashMachine(new Bank());
+
+    public CashMachine cashMachine = new CashMachine(new Bank());
+
+    Scene2 callScene2 = new Scene2();
 
 
     private Parent createContent() {
@@ -76,15 +79,28 @@ public class CashMachineApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setTitle("Welcome To CTM");
-        stage.setScene(callScene.getScene1());
 
 
+
+        callScene2 = new Scene2();
+
+        stage.setTitle("Create Account");
+        stage.setScene(callScene2.getScene2());
 
         stage.show();
 
+//        stage.setTitle("Welcome To CTM");
+//        stage.setScene(callScene.getScene1());
+//
+//        stage.show();
 
 
+
+    }
+
+
+    public CashMachine getCashMachine() {
+        return cashMachine;
     }
 
 

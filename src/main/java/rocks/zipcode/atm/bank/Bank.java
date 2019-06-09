@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public class Bank {
 
-    private Map<Integer, Account> accounts = new HashMap<>();
+    public Map<Integer, Account> accounts = new HashMap<>();
 
     public Bank() {
         accounts.put(1000, new BasicAccount(new AccountData(
@@ -64,4 +64,22 @@ public class Bank {
             return ActionResult.fail("Withdraw failed: " + amount + ". Account has: " + account.getBalance());
         }
     }
+
+
+    public void addAccount(Integer id, String name, String email, Boolean premium){
+        if (premium == true) {
+            accounts.put(id, new PremiumAccount(new AccountData(
+                    id, name, email, 0)));
+        } else {
+            accounts.put(id, new BasicAccount(new AccountData(
+                    id, name, email, 0)));
+        }
+
+
+    }
+
+    public Map<Integer, Account> getAccounts() {
+        return accounts;
+    }
+
 }
