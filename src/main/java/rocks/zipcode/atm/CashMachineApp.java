@@ -1,12 +1,11 @@
 package rocks.zipcode.atm;
 
 
+import javafx.scene.control.*;
+import rocks.zipcode.atm.bank.Account;
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.FlowPane;
@@ -24,12 +23,16 @@ public class CashMachineApp extends Application {
 
     Scene2 callScene2 = new Scene2();
 
+    private CashMachine cashMachine = new CashMachine(new Bank());
+    private Menu accounts = new Menu();
 
     private Parent createContent() {
         VBox vbox = new VBox(10);
         vbox.setPrefSize(600, 600);
 
         TextArea areaInfo = new TextArea();
+
+
 
         Button btnSubmit = new Button("Set Account ID");
         btnSubmit.setOnAction(e -> {
@@ -61,6 +64,7 @@ public class CashMachineApp extends Application {
 
             areaInfo.setText(cashMachine.toString());
         });
+
 
         FlowPane flowpane = new FlowPane();
 

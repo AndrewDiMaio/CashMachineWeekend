@@ -3,6 +3,7 @@ package rocks.zipcode.atm;
 import rocks.zipcode.atm.bank.AccountData;
 import rocks.zipcode.atm.bank.Bank;
 
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -44,6 +45,9 @@ public class CashMachine {
                     () -> bank.withdraw(accountData, amount),
                     update
             );
+        if(accountData != null && accountData.getBalance() < 0){
+
+        }
         }
     }
 
@@ -71,6 +75,8 @@ public class CashMachine {
         return accountData.getEmail();
     }
 
+
+
     private <T> void tryCall(Supplier<ActionResult<T> > action, Consumer<T> postAction) {
         try {
             ActionResult<T> result = action.get();
@@ -83,6 +89,11 @@ public class CashMachine {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+
         }
+    }
+
+    public List<String> getAllAccounts(){
+        return bank.getAllAccounts();
     }
 }
