@@ -44,16 +44,12 @@ public class SceneSetter {
         grid.add(userTextField, 1, 1);
 
 
-       // VBox vbMenu = new VBox(10);
-        //vbMenu.setAlignment(Pos.BOTTOM_LEFT);
-       // vbMenu.getChildren().add();
-        //grid.add(vbMenu, 0, 1);
+        accountList = FXCollections.observableArrayList();
+        for(String i : cashMachine.getAllAccounts()){ accountList.add(i); }
         ComboBox accountBox = new ComboBox(accountList);
         grid.add(accountBox, 2,1);
         accountList = FXCollections.observableArrayList();
-        for(String i : cashMachine.getAllAccounts()){
-            accountList.add(i);
-        }
+
 
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
