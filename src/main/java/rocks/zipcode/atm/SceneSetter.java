@@ -48,7 +48,9 @@ public class SceneSetter {
         for(String i : cashMachine.getAllAccounts()){ accountList.add(i); }
         ComboBox accountBox = new ComboBox(accountList);
         grid.add(accountBox, 2,1);
-        accountList = FXCollections.observableArrayList();
+        accountBox.setOnAction(e -> {
+            userTextField.setText(accountBox.getSelectionModel().getSelectedItem().toString());
+        });
 
 
         HBox hbBtn = new HBox(10);
