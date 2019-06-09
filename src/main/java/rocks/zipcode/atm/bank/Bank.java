@@ -2,7 +2,9 @@ package rocks.zipcode.atm.bank;
 
 import rocks.zipcode.atm.ActionResult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -81,5 +83,12 @@ public class Bank {
     public Map<Integer, Account> getAccounts() {
         return accounts;
     }
+    public List<String> getAllAccounts() {
+        List<String> accountNumbers = new ArrayList<>();
+        for (Integer accountNumber : accounts.keySet()){
+            accountNumbers.add(accountNumber.toString());
+        }
 
+        return accountNumbers;
+    }
 }

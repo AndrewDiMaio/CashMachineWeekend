@@ -82,17 +82,17 @@ public class CashMachineApp extends Application {
 
 
 
-        callScene2 = new Scene2();
-
-        stage.setTitle("Create Account");
-        stage.setScene(callScene2.getScene2());
-
-        stage.show();
-
-//        stage.setTitle("Welcome To CTM");
-//        stage.setScene(callScene.getScene1());
+//        callScene2 = new Scene2();
+//
+//        stage.setTitle("Create Account");
+//        stage.setScene(callScene2.getScene2());
 //
 //        stage.show();
+
+        stage.setTitle("Welcome To CTM");
+        stage.setScene(callScene.getScene1());
+
+        stage.show();
 
 
 
