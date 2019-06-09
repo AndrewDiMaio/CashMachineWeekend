@@ -28,8 +28,7 @@ public class ActionResult<T> {
         return data != null;
     }
 
-    public static <E> ActionResult<E> success(E data) {
-        return new ActionResult<E>(data);
+    public static <E> ActionResult<E> success(E data) {return new ActionResult<E>(data);
     }
 
     public static <E> ActionResult<E> fail(String errorMessage) {

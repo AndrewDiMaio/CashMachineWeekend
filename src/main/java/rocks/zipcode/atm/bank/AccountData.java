@@ -16,6 +16,7 @@ public final class AccountData {
         this.name = name;
         this.email = email;
         this.balance = balance;
+
     }
 
     public int getId() {
@@ -33,6 +34,8 @@ public final class AccountData {
     public float getBalance() {
         return balance;
     }
+
+
 
     @Override
     public String toString() {

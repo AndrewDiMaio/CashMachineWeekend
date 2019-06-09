@@ -4,10 +4,7 @@ package rocks.zipcode.atm;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -82,11 +79,26 @@ public class AccountScene {
         });
 
         withdrawl.setOnAction(e-> {
-            float amount = Float.parseFloat(field.getText());
-            cashMachine.withdraw(amount);
-            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
-            field.setText("");
-        });
+                    float amount = Float.parseFloat(field.getText());
+                    cashMachine.withdraw(amount);
+                    acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+                    field.setText("");
+                    if (cashMachine.getBalance() <= -1) {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Overdraft");
+                        alert.setHeaderText("Overdraft Warning");
+                        alert.setContentText("The requested action has caused your account balance to go below zero.");
+                        alert.showAndWait(); }
+
+                    else if (cashMachine.getBalance() == cashMachine.getBalance()){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Withdrawal Failed");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Your account contains insufficient funds.");
+
+                        alert.showAndWait();
+                    }
+                });
 
         logOut.setOnAction(e-> {
             newStage.close();
