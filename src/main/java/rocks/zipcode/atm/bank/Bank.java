@@ -1,16 +1,18 @@
 package rocks.zipcode.atm.bank;
 
+import javafx.scene.control.ComboBox;
 import rocks.zipcode.atm.ActionResult;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ZipCodeWilmington
  */
 public class Bank {
 
-    private Map<Integer, Account> accounts = new HashMap<>();
+    public Map<Integer, Account> accounts = new HashMap<>();
+
+
 
     public Bank() {
         accounts.put(1000, new BasicAccount(new AccountData(
@@ -34,8 +36,18 @@ public class Bank {
 
         accounts.put(7000, new BasicAccount(new AccountData(7000, "Garfield", "Imsorryjon@theend.com", 600)));
 
-
     }
+
+    public List<String> getAllAccounts() {
+        List<String> accountNumbers = new ArrayList<>();
+        for (Integer accountNumber : accounts.keySet()){
+            accountNumbers.add(accountNumber.toString());
+        }
+
+        return accountNumbers;
+    }
+
+
 
     public ActionResult<AccountData> getAccountById(int id) {
         Account account = accounts.get(id);
@@ -57,7 +69,9 @@ public class Bank {
     public ActionResult<AccountData> withdraw(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         boolean ok = account.withdraw(amount);
-
+        if(amount < 0){
+            ActionResult.fail("Seriously man? That's not how withdrawals work");
+        }
         if (ok) {
             return ActionResult.success(account.getAccountData());
         } else {

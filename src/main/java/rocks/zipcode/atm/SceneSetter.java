@@ -1,11 +1,11 @@
 package rocks.zipcode.atm;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -13,9 +13,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import rocks.zipcode.atm.bank.Bank;
+import java.util.HashMap;
 
 public class SceneSetter {
     GridPane grid = new GridPane();
+    //MenuBar accountsMenu = new MenuBar();
+    //Menu accounts = new Menu();
     private CashMachine cashMachine = new CashMachine(new Bank());
     AccountScene loginSuccess;
     Scene thisScene;
@@ -24,7 +27,7 @@ public class SceneSetter {
     Text scenetitle = new Text("Welcome");
     Label accountNum = new Label("Account Number:");
     Text actiontarget = new Text();
-
+    ObservableList<String> accountList;
 
 
     public SceneSetter(){
@@ -39,6 +42,18 @@ public class SceneSetter {
         grid.add(scenetitle, 0, 0, 2, 1);
         grid.add(accountNum, 0, 1);
         grid.add(userTextField, 1, 1);
+
+
+       // VBox vbMenu = new VBox(10);
+        //vbMenu.setAlignment(Pos.BOTTOM_LEFT);
+       // vbMenu.getChildren().add();
+        //grid.add(vbMenu, 0, 1);
+        ComboBox accountBox = new ComboBox(accountList);
+        grid.add(accountBox, 2,1);
+        accountList = FXCollections.observableArrayList();
+        for(String i : cashMachine.getAllAccounts()){
+            accountList.add(i);
+        }
 
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
