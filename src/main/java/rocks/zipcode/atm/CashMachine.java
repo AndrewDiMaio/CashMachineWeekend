@@ -89,9 +89,6 @@ public class CashMachine {
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            //String errorResult = e.getMessage().toString();
-            //return errorResult;
-
 
         }
     }
