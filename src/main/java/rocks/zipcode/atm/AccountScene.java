@@ -27,17 +27,16 @@ public class AccountScene {
     Scene thisScene;
     Button withdrawl = new Button("Withdrawal");
     Button deposit = new Button("Deposit");
-    TextField userTextField = new TextField();
     Text scenetitle;
     Text userName;
     Label nameLabel = new Label("Name:");
-    Text actiontarget = new Text();
-    Account thisAccount;
-    Stage newStage = new Stage();
+    Stage newStage;
     Text acctBalance;
     Label accountBalance = new Label("Account Balance:");
     Text cusEmail;
     Label emailAddress = new Label("Email Address:");
+    Button logOut = new Button("Log Out");
+
 
     private TextField field = new TextField();
 
@@ -71,10 +70,34 @@ public class AccountScene {
         grid.add(withdrawl, 3, 5, 1, 1 );
         grid.add(deposit, 0, 5, 1, 1);
 
+        grid.add(logOut, 2, 6, 3,1);
+
+
+        deposit.setOnAction(e-> {
+            float amount = Float.parseFloat(field.getText());
+            cashMachine.deposit(amount);
+            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
+
+        });
+
+        withdrawl.setOnAction(e-> {
+            float amount = Float.parseFloat(field.getText());
+            cashMachine.withdraw(amount);
+            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            field.setText("");
+        });
+
+        logOut.setOnAction(e-> {
+            newStage.close();
+        });
+
+
 
     }
 
     public void getAccountScene(int id){
+        newStage = new Stage();
         newStage.setTitle("Account " + id);
         newStage.setScene(thisScene);
         newStage.show();

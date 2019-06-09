@@ -55,6 +55,7 @@ public class SceneSetter {
         grid.add(actiontarget, 1, 6);
         btnLogin.setOnAction(e -> {
             int id = Integer.parseInt(userTextField.getText());
+            userTextField.setText("");
             cashMachine.login(id);
             if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
                 actiontarget.setText("Enter A Valid Account");
