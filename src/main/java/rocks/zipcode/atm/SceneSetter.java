@@ -27,6 +27,7 @@ public class SceneSetter {
 
 
 
+
     public SceneSetter(){
 
         grid.setAlignment(Pos.CENTER);
@@ -46,6 +47,11 @@ public class SceneSetter {
         grid.add(hbBtn, 1, 4);
 
 
+
+
+
+
+
         grid.add(actiontarget, 1, 6);
         btnLogin.setOnAction(e -> {
             int id = Integer.parseInt(userTextField.getText());
@@ -59,12 +65,37 @@ public class SceneSetter {
             }
         });
 
+
+
     }
 
 
     public Scene getScene1() {
        return thisScene;
     }
+
+
+
+    public Scene getScene2() {
+        return thisScene;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void buttonLogic(){
 
