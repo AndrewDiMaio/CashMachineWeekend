@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -16,6 +17,7 @@ import rocks.zipcode.atm.bank.Account;
 import rocks.zipcode.atm.bank.AccountData;
 import rocks.zipcode.atm.bank.Bank;
 
+import java.io.File;
 import java.security.PublicKey;
 
 public class AccountScene {
@@ -33,7 +35,12 @@ public class AccountScene {
     private Text cusEmail;
     private Label emailAddress = new Label("Email Address:");
     private Button logOut = new Button("Log Out");
-
+    File Giveyouup = new File("src/Resources/NeverGonnaGiveYouUp.mp3");
+    AudioClip buttonPress = new AudioClip(Giveyouup.toURI().toString());
+    File sayGoodbye = new File("src/Resources/NeverGonnaLetYouDown.mp3");
+    AudioClip buttonPress2 = new AudioClip(sayGoodbye.toURI().toString());
+    File runAround = new File("src/Resources/NeverGonnaSayGoodbye.mp3");
+    AudioClip buttonPress3 = new AudioClip((runAround.toURI().toString()));
 
     private TextField field = new TextField();
 
@@ -73,6 +80,7 @@ public class AccountScene {
 
         deposit.setOnAction(e-> {
             float amount = Float.parseFloat(field.getText());
+            buttonPress2.play();
             cashMachine.deposit(amount);
             acctBalance.setText(String.valueOf("$" + cashMachine.getBalance() + "0"));
             field.setText("");
@@ -83,6 +91,7 @@ public class AccountScene {
                     float amount = Float.parseFloat(field.getText());
                     float previousBalance = cashMachine.getBalance();
 
+                    buttonPress.play();
                     cashMachine.withdraw(amount);
                     acctBalance.setText(String.valueOf("$" + cashMachine.getBalance() + "0"));
                     field.setText("");
@@ -104,6 +113,7 @@ public class AccountScene {
                 });
 
         logOut.setOnAction(e-> {
+            buttonPress3.play();
             newStage.close();
         });
 
