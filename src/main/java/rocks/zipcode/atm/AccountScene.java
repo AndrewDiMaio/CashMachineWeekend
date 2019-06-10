@@ -47,6 +47,7 @@ public class AccountScene {
 
     public AccountScene(int id, CashMachine cashMachine){
         this.cashMachine = cashMachine;
+        grid.setStyle("-fx-background-color: Green");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(20);
