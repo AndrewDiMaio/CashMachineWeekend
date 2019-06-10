@@ -12,7 +12,7 @@ import java.util.function.Supplier;
  */
 public class CashMachine {
 
-    private final Bank bank;
+    private Bank bank;
     private AccountData accountData = null;
 
     public CashMachine(Bank bank) {
@@ -31,7 +31,9 @@ public class CashMachine {
     }
 
     public void deposit(float amount) {
-        if (accountData != null) {
+        if (amount < 0){
+
+        } else if (accountData != null) {
             tryCall(
                     () -> bank.deposit(accountData, amount),
                     update
@@ -40,14 +42,13 @@ public class CashMachine {
     }
 
     public void withdraw(float amount) {
-        if (accountData != null) {
+        if (amount < 0){
+
+        } else if (accountData != null) {
             tryCall(
                     () -> bank.withdraw(accountData, amount),
                     update
             );
-        if(accountData != null && accountData.getBalance() < 0){
-
-        }
         }
     }
 
@@ -96,4 +97,10 @@ public class CashMachine {
     public List<String> getAllAccounts(){
         return bank.getAllAccounts();
     }
+
+
+    public Bank getBank() {
+        return bank;
+    }
+
 }

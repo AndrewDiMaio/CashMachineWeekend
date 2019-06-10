@@ -1,11 +1,12 @@
 package rocks.zipcode.atm;
 
 
-import javafx.scene.control.*;
-import rocks.zipcode.atm.bank.Account;
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.layout.FlowPane;
@@ -84,34 +85,11 @@ public class CashMachineApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-
-
-        callScene2 = new Scene2();
-
-        stage.setTitle("Create Account");
-        stage.setScene(callScene2.getScene2());
-
-        stage.show();
-
-//        stage.setTitle("Welcome To CTM");
-//        stage.setScene(callScene.getScene1());
-//
-//        stage.show();
-
-
-
+        callScene.displayMainScene();
     }
-
-
-    public CashMachine getCashMachine() {
-        return cashMachine;
-    }
-
-
-
-
 
     public static void main(String[] args) {
         launch(args);
     }
+
 }

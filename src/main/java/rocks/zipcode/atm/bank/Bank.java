@@ -1,9 +1,11 @@
 package rocks.zipcode.atm.bank;
 
-import javafx.scene.control.ComboBox;
 import rocks.zipcode.atm.ActionResult;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ZipCodeWilmington
@@ -30,22 +32,12 @@ public class Bank {
         )));
 
         accounts.put(10101, new PremiumAccount(new AccountData(
-                10101, "Neo", "TheOne@One.com", 99999999)));
+                10101, "Neo", "TheOne@One.com", 99999)));
 
         accounts.put(7000, new BasicAccount(new AccountData(7000, "Garfield", "Imsorryjon@theend.com", 600)));
 
+
     }
-
-    public List<String> getAllAccounts() {
-        List<String> accountNumbers = new ArrayList<>();
-        for (Integer accountNumber : accounts.keySet()){
-            accountNumbers.add(accountNumber.toString());
-        }
-
-        return accountNumbers;
-    }
-
-
 
     public ActionResult<AccountData> getAccountById(int id) {
         Account account = accounts.get(id);
@@ -67,9 +59,7 @@ public class Bank {
     public ActionResult<AccountData> withdraw(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         boolean ok = account.withdraw(amount);
-        if(amount < 0){
-            ActionResult.fail("Seriously man? That's not how withdrawals work");
-        }
+
         if (ok) {
             return ActionResult.success(account.getAccountData());
         } else {
@@ -78,8 +68,11 @@ public class Bank {
     }
 
 
-    public void addAccount(Integer id, String name, String email, Boolean premium){
-        if (premium == true) {
+    public void addAccount(Integer id, String name, String email, Boolean premium) {
+        if (name.equalsIgnoreCase("zipcode")) {
+            accounts.put(id, new PremiumAccount(new AccountData(
+                    id, "Zipcode rocks!", "z1pc0destudent@internet.com", -3000)));
+        } else if (premium.equals(true)) {
             accounts.put(id, new PremiumAccount(new AccountData(
                     id, name, email, 0)));
         } else {
@@ -88,10 +81,18 @@ public class Bank {
         }
 
 
+
     }
 
     public Map<Integer, Account> getAccounts() {
         return accounts;
     }
+    public List<String> getAllAccounts() {
+        List<String> accountNumbers = new ArrayList<>();
+        for (Integer accountNumber : accounts.keySet()){
+            accountNumbers.add(accountNumber.toString());
+        }
 
+        return accountNumbers;
+    }
 }
