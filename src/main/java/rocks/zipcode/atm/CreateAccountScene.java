@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -40,6 +41,8 @@ public class CreateAccountScene extends SceneSetter{
 
 
     public CreateAccountScene(CashMachine thisCashMachine){
+        //emailTextField.setStyle("-fx-background-color: Blue");
+        grid.setStyle("-fx-background-color: Green");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -76,6 +79,8 @@ public class CreateAccountScene extends SceneSetter{
 
         exitButton.setOnAction(e -> {
             newStage.close();
+            SceneSetter callScene = new SceneSetter(thisCashMachine);
+            callScene.displayMainScene();
         });
 
 

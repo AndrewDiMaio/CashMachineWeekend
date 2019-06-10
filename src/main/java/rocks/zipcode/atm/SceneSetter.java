@@ -38,7 +38,7 @@ public class SceneSetter {
     public SceneSetter(CashMachine cashMachine) {
 
         this.cashMachine = cashMachine;
-
+        grid.setStyle("-fx-background-color: Green");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
