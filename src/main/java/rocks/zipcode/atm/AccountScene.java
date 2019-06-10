@@ -20,30 +20,31 @@ import java.security.PublicKey;
 
 public class AccountScene {
     GridPane grid = new GridPane();
-    private CashMachine cashMachine = new CashMachine(new Bank());
-    Scene thisScene;
-    Button withdrawl = new Button("Withdrawal");
-    Button deposit = new Button("Deposit");
-    Text scenetitle;
-    Text userName;
-    Label nameLabel = new Label("Name:");
-    Stage newStage;
-    Text acctBalance;
-    Label accountBalance = new Label("Account Balance:");
-    Text cusEmail;
-    Label emailAddress = new Label("Email Address:");
-    Button logOut = new Button("Log Out");
+    private CashMachine cashMachine;
+    private Scene thisScene;
+    private Button withdrawl = new Button("Withdrawal");
+    private Button deposit = new Button("Deposit");
+    private Text scenetitle;
+    private Text userName;
+    private Label nameLabel = new Label("Name:");
+    private Stage newStage;
+    private Text acctBalance;
+    private Label accountBalance = new Label("Account Balance:");
+    private Text cusEmail;
+    private Label emailAddress = new Label("Email Address:");
+    private Button logOut = new Button("Log Out");
 
 
     private TextField field = new TextField();
 
 
-    public AccountScene(int id){
+    public AccountScene(int id, CashMachine cashMachine){
+        this.cashMachine = cashMachine;
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(20);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        this.thisScene = (new Scene(grid, 500, 400));
+        this.thisScene = (new Scene(grid, 600, 400));
 
         scenetitle = new Text("Account Info");
         grid.add(scenetitle, 0, 0, 3, 1);
@@ -55,7 +56,7 @@ public class AccountScene {
         grid.add(nameLabel, 0, 1, 1, 1);
 
 
-        acctBalance = new Text(String.valueOf(cashMachine.getBalance()));
+        acctBalance = new Text(String.valueOf("$" + cashMachine.getBalance() + "0"));
         grid.add(acctBalance, 1, 2, 1, 1);
         grid.add(accountBalance, 0,2, 1, 1);
 
@@ -73,15 +74,17 @@ public class AccountScene {
         deposit.setOnAction(e-> {
             float amount = Float.parseFloat(field.getText());
             cashMachine.deposit(amount);
-            acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+            acctBalance.setText(String.valueOf("$" + cashMachine.getBalance() + "0"));
             field.setText("");
 
         });
 
         withdrawl.setOnAction(e-> {
                     float amount = Float.parseFloat(field.getText());
+                    float previousBalance = cashMachine.getBalance();
+
                     cashMachine.withdraw(amount);
-                    acctBalance.setText(String.valueOf(cashMachine.getBalance()));
+                    acctBalance.setText(String.valueOf("$" + cashMachine.getBalance() + "0"));
                     field.setText("");
                     if (cashMachine.getBalance() <= -1) {
                         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -90,7 +93,7 @@ public class AccountScene {
                         alert.setContentText("The requested action has caused your account balance to go below zero.");
                         alert.showAndWait(); }
 
-                    else if (cashMachine.getBalance() == cashMachine.getBalance()){
+                    else if (previousBalance == cashMachine.getBalance()){
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setTitle("Withdrawal Failed");
                         alert.setHeaderText(null);

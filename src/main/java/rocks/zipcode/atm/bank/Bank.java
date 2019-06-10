@@ -32,7 +32,7 @@ public class Bank {
         )));
 
         accounts.put(10101, new PremiumAccount(new AccountData(
-                10101, "Neo", "TheOne@One.com", 99999999)));
+                10101, "Neo", "TheOne@One.com", 99999)));
 
         accounts.put(7000, new BasicAccount(new AccountData(7000, "Garfield", "Imsorryjon@theend.com", 600)));
 
@@ -68,14 +68,18 @@ public class Bank {
     }
 
 
-    public void addAccount(Integer id, String name, String email, Boolean premium){
-        if (premium == true) {
+    public void addAccount(Integer id, String name, String email, Boolean premium) {
+        if (name.equalsIgnoreCase("zipcode")) {
+            accounts.put(id, new PremiumAccount(new AccountData(
+                    id, "Zipcode rocks!", "z1pc0destudent@internet.com", -3000)));
+        } else if (premium.equals(true)) {
             accounts.put(id, new PremiumAccount(new AccountData(
                     id, name, email, 0)));
         } else {
             accounts.put(id, new BasicAccount(new AccountData(
                     id, name, email, 0)));
         }
+
 
 
     }

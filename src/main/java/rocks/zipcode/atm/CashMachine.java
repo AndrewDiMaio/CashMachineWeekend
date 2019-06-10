@@ -12,7 +12,7 @@ import java.util.function.Supplier;
  */
 public class CashMachine {
 
-    private final Bank bank;
+    private Bank bank;
     private AccountData accountData = null;
 
     public CashMachine(Bank bank) {
@@ -96,4 +96,10 @@ public class CashMachine {
     public List<String> getAllAccounts(){
         return bank.getAllAccounts();
     }
+
+
+    public Bank getBank() {
+        return bank;
+    }
+
 }

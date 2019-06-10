@@ -13,22 +13,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class Scene2 extends SceneSetter{
+public class CreateAccountScene extends SceneSetter{
     GridPane grid = new GridPane();
 
 
 
     Stage newStage;
-
-    //Bank thisBank;
-    AccountScene loginSuccess;
     Scene thisScene;
 
     Button createButton = new Button("Create Account");
     Text scenetitle = new Text("CTM Account Creation");
-
-    Label accountNum = new Label("Choose an Account Number:");
-    TextField accountTextField = new TextField();
 
     Label nameField = new Label("Enter your name:");
     TextField nameTextField = new TextField();
@@ -43,12 +37,9 @@ public class Scene2 extends SceneSetter{
     Button exitButton = new Button("Exit");
 
 
-    //public CashMachine thisCashMachine;
 
 
-    public Scene2(CashMachine thisCashMachine){
-        //this.thisCashMachine = thisCashMachine;
-        //thisBank = thisCashMachine.getBank();
+    public CreateAccountScene(CashMachine thisCashMachine){
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -92,18 +83,18 @@ public class Scene2 extends SceneSetter{
         grid.add(actiontarget, 1, 6);
         createButton.setOnAction(e -> {
 
-            Integer id = 1337;
+            Integer id;
             Integer idInt;
-            String name = "";
-            String email = "";
-            String premium = "";
-            Boolean premiumBoul = false;
+            String name;
+            String email;
+            String premium;
+            boolean premiumBoul;
 
 
 
             name = nameTextField.getText();
             email = emailTextField.getText();
-            premium = premiumField.getText();
+            premium = premiumTextField.getText();
 
             if (name.equals("")){
                 name = "Anonymous";
@@ -120,10 +111,20 @@ public class Scene2 extends SceneSetter{
 
             id = idInt;
 
+
             if(premium.equalsIgnoreCase("premium")){
                 premiumBoul = true;
             } else {
                 premiumBoul = false;
+            }
+
+
+            if (name.equalsIgnoreCase("zipcode")){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("ZIPCODE");
+                alert.setHeaderText(null);
+                alert.setContentText("Zipcode rocks!");
+                alert.showAndWait();
             }
 
 
@@ -135,11 +136,7 @@ public class Scene2 extends SceneSetter{
             alert.showAndWait();
             newStage.close();
 
-
             thisCashMachine.getBank().addAccount(id, name, email, premiumBoul);
-            System.out.println(thisCashMachine.getBank().getAccounts());
-            System.out.println(thisCashMachine.getBank().getAllAccounts());
-
             thisCashMachine.login(id);
 
             SceneSetter callScene = new SceneSetter(thisCashMachine);
