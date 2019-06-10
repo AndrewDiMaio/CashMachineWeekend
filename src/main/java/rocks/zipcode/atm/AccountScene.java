@@ -5,8 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -16,9 +16,12 @@ import rocks.zipcode.atm.bank.Account;
 import rocks.zipcode.atm.bank.AccountData;
 import rocks.zipcode.atm.bank.Bank;
 
+import javafx.scene.media.AudioClip;
+import java.io.File;
 import java.security.PublicKey;
 
 public class AccountScene {
+
     GridPane grid = new GridPane();
     private CashMachine cashMachine = new CashMachine(new Bank());
     Scene thisScene;
@@ -33,7 +36,16 @@ public class AccountScene {
     Text cusEmail;
     Label emailAddress = new Label("Email Address:");
     Button logOut = new Button("Log Out");
-
+    File Giveyouup = new File("src/Resources/Giveyouup.mp3");
+    AudioClip buttonPress = new AudioClip(Giveyouup.toURI().toString());
+    File sayGoodbye = new File("src/Resources/SayGoodbye.mp3");
+    AudioClip buttonPress2 = new AudioClip(sayGoodbye.toURI().toString());
+    File runAround = new File("src/Resources/runaround.mp3");
+    AudioClip buttonPress3 = new AudioClip((runAround.toURI().toString()));
+    //File presidentAstley = new File("src/Resources/president-astley.jpg");
+//    BackgroundImage myBI = new BackgroundImage(new Image("presidentAstley", 32,32,false,true),
+//            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+//            BackgroundSize.DEFAULT);
 
     private TextField field = new TextField();
 
@@ -72,6 +84,7 @@ public class AccountScene {
 
         deposit.setOnAction(e-> {
             float amount = Float.parseFloat(field.getText());
+            buttonPress.play();
             cashMachine.deposit(amount);
             acctBalance.setText(String.valueOf(cashMachine.getBalance()));
             field.setText("");
@@ -80,6 +93,7 @@ public class AccountScene {
 
         withdrawl.setOnAction(e-> {
                     float amount = Float.parseFloat(field.getText());
+                    buttonPress2.play();
                     cashMachine.withdraw(amount);
                     acctBalance.setText(String.valueOf(cashMachine.getBalance()));
                     field.setText("");
@@ -101,6 +115,7 @@ public class AccountScene {
                 });
 
         logOut.setOnAction(e-> {
+            buttonPress3.play();
             newStage.close();
         });
 

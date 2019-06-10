@@ -1,15 +1,17 @@
 package rocks.zipcode.atm;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import rocks.zipcode.atm.bank.Bank;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.FlowPane;
+
+import java.io.File;
 
 /**
  * @author ZipCodeWilmington
@@ -23,7 +25,6 @@ public class CashMachineApp extends Application {
     public CashMachine cashMachine = new CashMachine(new Bank());
 
     Scene2 callScene2 = new Scene2();
-
 
     private Parent createContent() {
         VBox vbox = new VBox(10);
@@ -61,8 +62,14 @@ public class CashMachineApp extends Application {
 
             areaInfo.setText(cashMachine.toString());
         });
+//        File presidentAstley = new File("src/Resources/president-astley.jpg");
+//            BackgroundImage myBI = new BackgroundImage(new Image("presidentAstley", 32,32,false,true),
+//            BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+//            BackgroundSize.DEFAULT);
 
         FlowPane flowpane = new FlowPane();
+//        flowpane.setStyle("-fx-background-image: \"src/Resources/president-astley.jpg\" ");
+
 
         flowpane.getChildren().add(btnSubmit);
         flowpane.getChildren().add(btnDeposit);
