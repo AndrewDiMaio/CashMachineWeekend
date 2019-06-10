@@ -12,27 +12,33 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import rocks.zipcode.atm.bank.Bank;
-import java.util.HashMap;
 
 public class SceneSetter {
     GridPane grid = new GridPane();
-    //MenuBar accountsMenu = new MenuBar();
-    //Menu accounts = new Menu();
-    private CashMachine cashMachine = new CashMachine(new Bank());
+    private CashMachine cashMachine;
     AccountScene loginSuccess;
     Scene thisScene;
     Button btnLogin = new Button("Sign In");
     TextField userTextField = new TextField();
-    Text scenetitle = new Text("Welcome");
+    Text scenetitle = new Text("Welcome to CTM");
     Label accountNum = new Label("Account Number:");
     Text actiontarget = new Text();
     ObservableList<String> accountList;
 
+    Stage mainStage;
 
 
-    public SceneSetter(){
+    Button createAccnt = new Button("Create Account");
 
+
+    public SceneSetter() {
+    }
+
+
+    public SceneSetter(CashMachine cashMachine) {
+
+        this.cashMachine = cashMachine;
+        grid.setStyle("-fx-background-color: Green");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
@@ -46,9 +52,11 @@ public class SceneSetter {
 
 
         accountList = FXCollections.observableArrayList();
-        for(String i : cashMachine.getAllAccounts()){ accountList.add(i); }
+        for (String i : cashMachine.getAllAccounts()) {
+            accountList.add(i);
+        }
         ComboBox accountBox = new ComboBox(accountList);
-        grid.add(accountBox, 2,1);
+        grid.add(accountBox, 2, 1);
         accountBox.setOnAction(e -> {
             userTextField.setText(accountBox.getSelectionModel().getSelectedItem().toString());
         });
@@ -60,9 +68,18 @@ public class SceneSetter {
         grid.add(hbBtn, 1, 4);
 
 
+        HBox hbBtn2 = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().addAll(createAccnt);
+        grid.add(hbBtn2, 1, 5);
 
 
+        createAccnt.setOnAction(e -> {
+            mainStage.close();
+            CreateAccountScene callCreateAccountScene = new CreateAccountScene(cashMachine);
+            callCreateAccountScene.getCreateScene();
 
+        });
 
 
         grid.add(actiontarget, 1, 6);
@@ -72,48 +89,27 @@ public class SceneSetter {
             cashMachine.login(id);
             if (cashMachine.toString().contains("Try account 1000 or 2000 and click submit.")) {
                 actiontarget.setText("Enter A Valid Account");
-            }
-            else {loginSuccess = new AccountScene(id);
+            } else {
+                loginSuccess = new AccountScene(id, cashMachine);
                 loginSuccess.getAccountScene(id);
             }
         });
+    }
 
 
+    public void displayMainScene() {
+        mainStage = new Stage();
+        mainStage.setTitle("Welcome to CTM");
+        mainStage.setScene(thisScene);
+        mainStage.show();
 
     }
 
 
-    public Scene getScene1() {
-       return thisScene;
-    }
-
-
-
-    public Scene getScene2() {
-        return thisScene;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void buttonLogic(){
-
+    public void buttonLogic() {
 
 
     }
+
 
 }
