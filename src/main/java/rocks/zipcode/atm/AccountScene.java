@@ -39,15 +39,19 @@ public class AccountScene {
     AudioClip buttonPress = new AudioClip(Giveyouup.toURI().toString());
     File sayGoodbye = new File("src/Resources/NeverGonnaLetYouDown.mp3");
     AudioClip buttonPress2 = new AudioClip(sayGoodbye.toURI().toString());
-    File runAround = new File("src/Resources/NeverGonnaSayGoodbye.mp3");
+    File runAround = new File("src/Resources/NeverGonnaRunAround.mp3");
     AudioClip buttonPress3 = new AudioClip((runAround.toURI().toString()));
+    File background = new File("src/Resources/meme-president-astley.jpg");
 
     private TextField field = new TextField();
 
 
+
     public AccountScene(int id, CashMachine cashMachine){
+        //grid.setGra
         this.cashMachine = cashMachine;
         grid.setStyle("-fx-background-color: Green");
+        //grid.setStyle("-fx-background-image: background");
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(20);
